@@ -1,0 +1,30 @@
+<div class="row mt-5 w-75">
+  <input type="text" class="form-control" [(ngModel)]="searchValue" />
+  <h4>{{ searchValue }}</h4>
+</div>
+<div class="row mt-4">
+  <div
+    class="card col-lg-4 mx-2"
+    *ngFor="let movie of allMovies"
+    style="width: 250px"
+  >
+    <a [routerLink]="['/moviedetails',movie.id]">
+      <img
+        src="{{ imagePath + movie.poster_path }}"
+        class="card-img-top"
+        alt="..."
+      />
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">{{ movie.title }}</h5>
+      <p class="card-text" *ngIf="movie.showDetails">
+        {{ movie.overview }}
+      </p>
+      <!-- <a href="#" class="btn btn-warning">show/hide details</a> -->
+      <button class="btn btn-primary">Watch</button>
+      <button class="btn btn-success" (click)="toggleDescription(movie.id)">
+        {{ movie.showDetails ? "Hide" : "Show" }}Details
+      </button>
+    </div>
+  </div>
+</div>
